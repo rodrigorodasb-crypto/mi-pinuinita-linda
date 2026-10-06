@@ -1,0 +1,706 @@
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Tu eres mi pingüinita bella 💗</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    min-height:100vh;
+    overflow:hidden;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family:"Trebuchet MS", sans-serif;
+
+    background:
+        radial-gradient(circle at 50% 20%, #536b92 0%, #202b46 45%, #0c1221 100%);
+
+    color:white;
+}
+
+/* ESTRELLAS */
+
+.stars{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+}
+
+.star{
+    position:absolute;
+    width:3px;
+    height:3px;
+    background:white;
+    border-radius:50%;
+    opacity:.7;
+    animation:twinkle 3s infinite alternate;
+}
+
+@keyframes twinkle{
+    from{
+        opacity:.2;
+        transform:scale(.7);
+    }
+    to{
+        opacity:1;
+        transform:scale(1.5);
+    }
+}
+
+/* CONTENEDOR */
+
+.container{
+    text-align:center;
+    width:100%;
+    max-width:600px;
+    padding:25px;
+    position:relative;
+    z-index:5;
+}
+
+h1{
+    font-size:clamp(28px, 6vw, 48px);
+    margin-bottom:10px;
+
+    text-shadow:
+        0 3px 15px rgba(0,0,0,.5);
+
+    animation:titleFloat 3s ease-in-out infinite;
+}
+
+@keyframes titleFloat{
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-5px);
+    }
+}
+
+.subtitle{
+    font-size:17px;
+    opacity:.85;
+    margin-bottom:25px;
+}
+
+/* PINGÜINO */
+
+.penguin-area{
+    position:relative;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:390px;
+}
+
+.penguin{
+    width:220px;
+    height:290px;
+    position:relative;
+    cursor:pointer;
+
+    animation:
+        penguinFloat 3s ease-in-out infinite;
+
+    filter:
+        drop-shadow(0 25px 20px rgba(0,0,0,.45));
+
+    transition:
+        transform .4s ease;
+}
+
+.penguin:hover{
+    transform:scale(1.05);
+}
+
+@keyframes penguinFloat{
+    0%,100%{
+        transform:translateY(0) rotate(0deg);
+    }
+
+    50%{
+        transform:translateY(-12px) rotate(1deg);
+    }
+}
+
+/* CABEZA */
+
+.head{
+    position:absolute;
+    width:190px;
+    height:175px;
+    background:
+        linear-gradient(145deg,#252d3d,#080c15);
+    border-radius:50% 50% 45% 45%;
+    left:15px;
+    top:5px;
+
+    box-shadow:
+        inset -15px -15px 25px rgba(0,0,0,.4),
+        inset 10px 8px 18px rgba(255,255,255,.08);
+}
+
+/* CARITA BLANCA */
+
+.face{
+    position:absolute;
+    width:145px;
+    height:125px;
+    background:
+        linear-gradient(145deg,#fff,#e5e9ef);
+    border-radius:50%;
+    left:22px;
+    top:35px;
+
+    box-shadow:
+        inset 0 -8px 15px rgba(0,0,0,.08);
+}
+
+/* OJOS */
+
+.eye{
+    position:absolute;
+    width:23px;
+    height:28px;
+    background:#10141d;
+    border-radius:50%;
+    top:42px;
+}
+
+.eye.left{
+    left:38px;
+}
+
+.eye.right{
+    right:38px;
+}
+
+.eye::after{
+    content:"";
+    position:absolute;
+    width:7px;
+    height:8px;
+    background:white;
+    border-radius:50%;
+    top:5px;
+    left:5px;
+}
+
+/* PICO */
+
+.beak{
+    position:absolute;
+    left:61px;
+    top:76px;
+
+    width:0;
+    height:0;
+
+    border-left:13px solid transparent;
+    border-right:13px solid transparent;
+    border-top:22px solid #f4a629;
+
+    filter:drop-shadow(0 2px 2px rgba(0,0,0,.25));
+}
+
+/* CUERPO */
+
+.body{
+    position:absolute;
+    width:190px;
+    height:175px;
+
+    left:15px;
+    top:115px;
+
+    background:
+        linear-gradient(145deg,#252d3d,#070b13);
+
+    border-radius:
+        45%
+        45%
+        35%
+        35%;
+
+    box-shadow:
+        inset -15px -15px 25px rgba(0,0,0,.45),
+        inset 10px 10px 18px rgba(255,255,255,.05);
+}
+
+/* BARRIGA */
+
+.belly{
+    position:absolute;
+
+    width:145px;
+    height:145px;
+
+    left:22px;
+    top:12px;
+
+    background:
+        linear-gradient(145deg,#ffffff,#e5e9ef);
+
+    border-radius:50% 50% 45% 45%;
+
+    box-shadow:
+        inset 0 -10px 15px rgba(0,0,0,.08);
+}
+
+/* ALITAS */
+
+.flipper{
+    position:absolute;
+
+    width:65px;
+    height:115px;
+
+    background:
+        linear-gradient(145deg,#303949,#0b101a);
+
+    border-radius:60% 40% 60% 40%;
+    top:125px;
+
+    transition:
+        transform .6s cubic-bezier(.2,.8,.2,1);
+}
+
+.flipper.left{
+    left:-20px;
+    transform:rotate(25deg);
+}
+
+.flipper.right{
+    right:-20px;
+    transform:rotate(-25deg);
+}
+
+/* PATITAS */
+
+.foot{
+    position:absolute;
+    width:60px;
+    height:25px;
+
+    background:#f4a629;
+
+    border-radius:50%;
+
+    bottom:-12px;
+
+    box-shadow:
+        0 4px 5px rgba(0,0,0,.3);
+}
+
+.foot.left{
+    left:35px;
+}
+
+.foot.right{
+    right:35px;
+}
+
+/* CORAZÓN */
+
+.heart{
+    position:absolute;
+
+    font-size:75px;
+
+    left:50%;
+    top:50%;
+
+    transform:
+        translate(-50%,-50%)
+        scale(0);
+
+    opacity:0;
+
+    z-index:10;
+
+    filter:
+        drop-shadow(0 8px 12px rgba(255,0,80,.35));
+
+    transition:
+        transform .5s cubic-bezier(.17,.89,.32,1.49),
+        opacity .3s;
+}
+
+/* CUANDO SE ACTIVA */
+
+.penguin.active .flipper.left{
+    transform:
+        translate(45px,15px)
+        rotate(50deg);
+}
+
+.penguin.active .flipper.right{
+    transform:
+        translate(-45px,15px)
+        rotate(-50deg);
+}
+
+.penguin.active .heart{
+    transform:
+        translate(-50%,-50%)
+        scale(1);
+
+    opacity:1;
+}
+
+/* MENSAJE */
+
+.message{
+    position:absolute;
+
+    bottom:10px;
+    left:50%;
+
+    transform:
+        translateX(-50%)
+        translateY(30px);
+
+    width:90%;
+
+    font-size:24px;
+    font-weight:bold;
+
+    opacity:0;
+
+    color:#ffdce8;
+
+    text-shadow:
+        0 3px 15px rgba(255,100,150,.5);
+
+    transition:
+        all .7s ease;
+}
+
+.message.show{
+    opacity:1;
+    transform:
+        translateX(-50%)
+        translateY(0);
+}
+
+/* BESITOS */
+
+.kiss{
+    position:absolute;
+
+    font-size:30px;
+
+    pointer-events:none;
+
+    animation:
+        kissFly 2.2s ease-out forwards;
+}
+
+@keyframes kissFly{
+
+    0%{
+        opacity:0;
+        transform:
+            translate(0,0)
+            scale(.4);
+    }
+
+    15%{
+        opacity:1;
+    }
+
+    100%{
+        opacity:0;
+        transform:
+            translate(
+                var(--x),
+                var(--y)
+            )
+            scale(1.4)
+            rotate(20deg);
+    }
+}
+
+/* CORAZONES */
+
+.love{
+    position:absolute;
+
+    font-size:25px;
+
+    pointer-events:none;
+
+    animation:
+        loveFloat 3s ease-out forwards;
+}
+
+@keyframes loveFloat{
+
+    0%{
+        opacity:0;
+        transform:
+            translateY(0)
+            scale(.4);
+    }
+
+    15%{
+        opacity:1;
+    }
+
+    100%{
+        opacity:0;
+        transform:
+            translateY(-250px)
+            translateX(var(--x))
+            scale(1.3);
+    }
+}
+
+/* BOTÓN */
+
+.hint{
+    margin-top:15px;
+
+    font-size:14px;
+
+    opacity:.7;
+
+    animation:
+        hintPulse 2s infinite;
+}
+
+@keyframes hintPulse{
+    0%,100%{
+        opacity:.5;
+    }
+
+    50%{
+        opacity:1;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ESTRELLAS -->
+
+<div class="stars" id="stars"></div>
+
+<div class="container">
+
+    <h1>🐧 TU ERES MI PINGÜINITA BELLA 💗</h1>
+
+    <div class="subtitle">
+        Toca al pingüinito... 🥺💕
+    </div>
+
+    <div class="penguin-area">
+
+        <div class="penguin" id="penguin">
+
+            <!-- CABEZA -->
+            <div class="head">
+
+                <div class="face">
+
+                    <div class="eye left"></div>
+                    <div class="eye right"></div>
+
+                    <div class="beak"></div>
+
+                </div>
+
+            </div>
+
+            <!-- CUERPO -->
+            <div class="body">
+
+                <div class="belly"></div>
+
+            </div>
+
+            <!-- ALITAS -->
+            <div class="flipper left"></div>
+            <div class="flipper right"></div>
+
+            <!-- PATITAS -->
+            <div class="foot left"></div>
+            <div class="foot right"></div>
+
+            <!-- CORAZÓN -->
+            <div class="heart">
+                ❤️
+            </div>
+
+        </div>
+
+        <div class="message" id="message">
+            Mi corazón se derrite por tiii 💗🥺
+        </div>
+
+    </div>
+
+    <div class="hint">
+        💕 Haz clic otra vez para darle más besitos 💕
+    </div>
+
+</div>
+
+
+<script>
+
+/* CREAR ESTRELLAS */
+
+const stars = document.getElementById("stars");
+
+for(let i=0;i<90;i++){
+
+    const star = document.createElement("div");
+
+    star.classList.add("star");
+
+    star.style.left =
+        Math.random()*100 + "%";
+
+    star.style.top =
+        Math.random()*100 + "%";
+
+    star.style.animationDelay =
+        Math.random()*3 + "s";
+
+    star.style.opacity =
+        Math.random();
+
+    stars.appendChild(star);
+}
+
+
+/* PINGÜINO */
+
+const penguin =
+    document.getElementById("penguin");
+
+const message =
+    document.getElementById("message");
+
+
+penguin.addEventListener("click",function(){
+
+    /* ACTIVAR ABRAZO */
+
+    penguin.classList.add("active");
+
+    message.classList.add("show");
+
+
+    /* CREAR BESITOS */
+
+    for(let i=0;i<7;i++){
+
+        setTimeout(()=>{
+
+            const kiss =
+                document.createElement("div");
+
+            kiss.classList.add("kiss");
+
+            kiss.innerHTML =
+                Math.random() > .5
+                ? "💋"
+                : "😘";
+
+            kiss.style.left =
+                (45 + Math.random()*20) + "%";
+
+            kiss.style.top =
+                (35 + Math.random()*20) + "%";
+
+            kiss.style.setProperty(
+                "--x",
+                (-80 + Math.random()*160) + "px"
+            );
+
+            kiss.style.setProperty(
+                "--y",
+                (-100 - Math.random()*150) + "px"
+            );
+
+            document.body.appendChild(kiss);
+
+            setTimeout(()=>{
+                kiss.remove();
+            },2200);
+
+        },i*180);
+
+    }
+
+
+    /* CREAR CORAZONES */
+
+    for(let i=0;i<10;i++){
+
+        setTimeout(()=>{
+
+            const love =
+                document.createElement("div");
+
+            love.classList.add("love");
+
+            love.innerHTML =
+                Math.random() > .5
+                ? "💗"
+                : "💕";
+
+            love.style.left =
+                (40 + Math.random()*20) + "%";
+
+            love.style.top =
+                (45 + Math.random()*20) + "%";
+
+            love.style.setProperty(
+                "--x",
+                (-100 + Math.random()*200) + "px"
+            );
+
+            document.body.appendChild(love);
+
+            setTimeout(()=>{
+                love.remove();
+            },3000);
+
+        },i*150);
+
+    }
+
+
+    /* QUITAR ABRAZO DESPUÉS */
+
+    setTimeout(()=>{
+
+        penguin.classList.remove("active");
+
+    },2500);
+
+});
+
+
+</script>
+
+</body>
+</html>
+```
